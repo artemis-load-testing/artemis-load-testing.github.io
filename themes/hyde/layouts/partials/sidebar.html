@@ -14,16 +14,28 @@
 
     <nav>
       <ul class="sidebar-nav">
-        <li><a href="{{ .Site.BaseURL }}">Home</a></li>
-        {{ range .Site.Menus.main -}}
+        <!-- <li><a href="{{ .Site.BaseURL }}">Home</a></li> -->
+        <li><a href="/#introduction">Introduction</a></li>
+        <li><a href="/#overview_api_load_testing">APIs and Load testing</a></li>
+        <li><a href="/#use_case">Use Case</a></li>
+        <li><a href="/#existing_solutions">Existing solutions</a></li>
+        <li><a href="/#introducing_artemis">Introducing Artemis</a></li>
+        <li><a href="/#using_artemis">Using Artemis</a></li>
+        <li><a href="/#design_decisions">Design Decisions</a></li>
+        <li><a href="/#this_is_artemis">This is Artemis</a></li>
+        <li><a href="/#future_work">Future Work</a></li>
+        <li><a href="/#references">References</a></li>
+        <li><a href="/#presentation">Presentation</a></li>
+        <li><a href="/#our_team">Our Team</a></li>
+        <!-- {{ range .Site.Menus.main -}}
         <li><a href="{{.URL}}"> {{ .Name }} </a></li>
-        {{- end }}
+        {{- end }} -->
       </ul>
     </nav>
 
-    <p>
+    <!-- <p>
       {{ with .Site.Params.copyright }}{{.}}{{ else }}&copy; {{ now.Format
       "2006"}}. All rights reserved. {{end}}
-    </p>
+    </p> -->
   </div>
 </aside>
