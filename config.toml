@@ -1,0 +1,9 @@
+baseURL = 'https://artemis-load-testing.github.io/'
+languageCode = 'en-us'
+title = 'Artemis'
+theme = 'hyde'
+
+[params]
+  description = 'Artemis is an open source, serverless framework for scalable load testing of your APIs.'
+  themeColor = "theme-base-0g"
+
