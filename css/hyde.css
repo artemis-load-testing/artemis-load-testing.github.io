@@ -32,6 +32,10 @@
 html {
   font-family: 'Montserrat', sans-serif;
 }
+figcaption {
+  font-size: 0.8em;
+  text-align: center;
+}
 @media (min-width: 48em) {
   html {
     font-size: 14px;
