@@ -31,17 +31,17 @@ Artemis is an open source, serverless framework for scalable API load testing. I
 
 Usage: `artemis [options] [command]`
 
-| Command            | Description                                                             |
-| ------------------ | ----------------------------------------------------------------------- |
-| run-test [options] | Run the test script concurrently the specified number of times.         |
-| grafana-start      | Start the Artemis Grafana dashboard.                                    |
-| grafana-stop       | Stop the Artemis Grafana dashboard.                                     |
-| deploy             | Deploy Artemis infrastructure onto the user's AWS account.              |
-| sleep              | Stop all supporting container tasks for minimal AWS usage charges.      |
-| teardown           | Teardown Artemis infrastructure on user's AWS account, retain database. |
-| destroy-db         | Permanently delete the Artemis database.                                |
-| admin-dashboard    | Start admin dashboard GUI.                                              |
-| help [command]     | Display help for a specific command.                                    |
+| Command           | Description                                                             |
+| ----------------- | ----------------------------------------------------------------------- |
+| `run-test`        | Run the test script concurrently the specified number of times.         |
+| `grafana-start`   | Start the Artemis Grafana dashboard.                                    |
+| `grafana-stop`    | Stop the Artemis Grafana dashboard.                                     |
+| `deploy`          | Deploy Artemis infrastructure onto the user's AWS account.              |
+| `sleep`           | Stop all supporting container tasks for minimal AWS usage charges.      |
+| `teardown`        | Teardown Artemis infrastructure on user's AWS account, retain database. |
+| `destroy-db`      | Permanently delete the Artemis database.                                |
+| `admin-dashboard` | Start admin dashboard GUI.                                              |
+| `help`            | Display help for a specific command.                                    |
 
 **Login details for Artemis' Grafana dashboard:**
 
@@ -87,7 +87,7 @@ API load testing follows a protocol-based load testing approach. Before delving 
 
 Calls to API endpoints make up an increasing amount of public and private network traffic. Networking giant Cloudflare has reported that more than 50% of the requests they process are API calls and that API call traffic is growing twice as fast as browser-based web traffic.
 
-For some companies, APIs are the very focus of their business. Companies like this may expose several endpoints that perform tasks or retrieve data upon receiving requests. Since their APIs are their primary product, it is important to know at what point they would break.
+For some companies, APIs are the very focus of their business. Companies like this may expose several endpoints that perform tasks or retrieve data upon receiving requests. Since their APIs are their primary product, it is important to know at what point their performance would degrade, or at what point they would break altogether.
 
 Global payment provider Stripe is an excellent example of this type of company.
 
@@ -131,9 +131,9 @@ JMeter, Gatling and k6 are some of the more commonly used API load testing tools
 
 Each of these tools provides the functionality to perform protocol-based load testing. These tools are written in a variety of different languages and vary in the way a user would create and run tests. JMeter has limited scripting capabilities; tests are composed primarily through a GUI whereas Gatling and k6 tests must be written as scripts in the prescribed language. For example, k6 tests are written entirely in JavaScript and Gatling tests are written in a domain-specific language (DSL).
 
-{{< figure src="../assets/fig2_1.png" caption="Figure 2.1 Comparison chart of three prominent load testing tools: JMeter, Gatling, and k6 [cite 1]" >}}
+{{< figure src="../assets/fig2_1.png" caption="Figure 2.1 Comparison chart of three prominent load testing tools: JMeter, Gatling, and k6 ¹" >}}
 
-A consideration when comparing local open source solutions is memory requirements. In Figure 2.1, the max traffic generation capability results, measured in requests per second (RPS), are based on each tool running on the same hardware. Max traffic generation capability is closely tied to memory usage. Generally, a higher number of requests per second correlates to lower memory usage. With such varying memory usage amounts it is important to understand the capabilities of an individual machine before performing tests.
+A consideration when comparing local open source solutions is memory requirements. In Figure 2.1, the max traffic generation capability results, measured in requests per second (RPS), are based on each tool running on the same hardware. Max traffic generation capability is closely tied to memory usage. A tool that is more resource efficient will be able to perform a higher number of requests while using less memory. With such varying memory usage amounts it is important to understand the capabilities of an individual machine before performing tests.
 
 ### 2.2 Limitations of using open source solutions locally
 
@@ -141,7 +141,7 @@ The following section discusses a number of limitations shared by API load testi
 
 #### 2.2.1 CPU and Memory restrictions
 
-The largest limitation when using an API load testing solution locally is that the amount of load generated is limited by the machine’s memory and CPU. Even though k6 is typically considered a more performant load testing tool, CPU and memory limitations remain a concern.
+The largest limitation when using an API load testing solution locally is that the amount of load generated is limited to a single machine’s memory and CPU. Even though k6 is typically considered a more performant load testing tool, CPU and memory limitations remain a concern.
 
 Research was conducted to test the hardware limits of two standard computers that could be used in a development setting. Figure 2.2 summarizes the observations of this research. It shows the output for two tests of 600 and 1000 virtual users running the same two minute test script on different machines. Computer 1 has 8GB RAM while computer 2 has 32 GB of RAM, both using an 8 core CPU.
 
@@ -165,8 +165,6 @@ The open source version of k6, like many other local load testing tools, provide
 
 {{< figure src="../assets/k6_csv_results.png" caption="Figure 2.4 CSV k6 test result output, rows 12-48361 are hidden." >}}
 
-Figure 2.4 CSV k6 test result output, rows 12-48361 are hidden
-
 However, the user will still need to come up with a way to process and parse that data and visualize it in a meaningful way.
 
 ### 2.3 Building a custom solution around an open source tool
@@ -185,11 +183,11 @@ Cloud-based SaaS load testing solutions are well-established and provide the sou
 
 {{< figure src="../assets/k6_cloud.png" caption="Figure 2.6 k6 Cloud test visualization" >}}
 
-Cloud-based solutions provide real-time visualized results of the test. For some solutions this is a built-in feature, whereas other solutions require setup to output results to a third-party tool. This provides indication of any performance concerns as they occur during the test. Imagine running a 6 hour test without any insight into the results, only to find out that there was an unexpectedly high failure rate within the first thirty minutes. Without near real-time result visualization, a user could be wasting potential development time waiting for the tests to complete.
+Cloud-based solutions provide real-time visualized results of the test. For some solutions this is a built-in feature, whereas other solutions require setup to output results to a third-party tool. Real-time visualization of results provides indication of any performance concerns as they occur during the test. Imagine running a 6 hour test without any insight into the results, only to find out that there was an unexpectedly high failure rate within the first thirty minutes. Without near real-time result visualization, a user could be wasting potential development time waiting for the tests to complete.
 
 A major benefit of using a cloud-based solution is the ability to simulate a much larger number of virtual users than could be achieved with a local load testing solution. The cloud provider is responsible for provisioning resources based on testing needs.
 
-{{< figure src="../assets/fig2_7.png" caption="Figure 2.7 Comparison of highest tier cloud-based solutions" >}}
+{{< figure src="../assets/fig2_7.png" caption="Figure 2.7 Comparison of highest tier cloud-based solutions as of April 2022" >}}
 
 Figure 2.7 is an example of the highest tier monthly subscription offered by the aforementioned cloud providers. Many of these solutions also provide a separate breakdown for individual endpoints within a given scenario. Other features such as scheduling tests, generating reports, and providing performance insights are common amongst vendors in this space. Although the number of virtual users, test duration and data storage differs between solutions, they share a common subscription model that locks users into the tier’s offerings.
 
@@ -219,11 +217,7 @@ Artemis allows users to overcome the load generation limitations of a single mac
 
 ### 3.1 Where Artemis fits in
 
-<p id="gdcalert14" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image14.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert15">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image14.png 'image_tooltip')
-
-Figure 3.1. Artemis’ solution features
+{{< figure src="../assets/24_artemis-table.png" caption="Figure 3.1. Artemis’ solution features" >}}
 
 Artemis deploys the necessary infrastructure for performing API load tests to a user’s AWS account with a single CLI command. Users can run load tests without restrictions on the number of virtual users and the test duration. Aggregated test results can be visualized in near real-time with the provided dashboard, and test results are retained in long-term storage, allowing the user to further parse, transform or query the data as desired.
 
@@ -235,24 +229,22 @@ However, Artemis is a flexible, scalable solution for users who are unable to bu
 
 ### 4.1 Four components
 
-<p id="gdcalert15" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image15.gif). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert16">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+Artemis’ architecture can be divided up into four different components as shown in Figure 4.1: load generation, aggregation, data storage, and result visualization.
 
-![alt_text](images/image15.gif 'image_tooltip')
-
-Figure 4.1. Artemis’ Architecture
-
-Artemis’ architecture can be divided up into four different components: load generation, aggregation, data storage, and result visualization.
+{{< figure src="../assets/50_this-is-artemis-full.gif" caption="Figure 4.1. Artemis' Architecture" >}}
 
 - The first component is concerned with load generation. The load testing containers in this component simulate virtual users that perform requests against the API the user wishes to test.
 - The second component is concerned with the aggregation of the test results. A single container collects and processes all the test results generated by the load testing containers.
 - The third component is concerned with data storage. The aggregated test results are stored in a time-series database.
 - The fourth and final component is concerned with result visualization. The provided dashboard allows the user to visualize meaningful metrics generated by their load test.
 
+These components are discussed in greater depth in the upcoming _Design Decisions_ section.
+
 ### 4.2 Deploying Artemis
 
 Prior to load generation, the supporting infrastructure needs to be in place.
 
-By using the command **artemis deploy**, the necessary components can be deployed to AWS. This command makes use of the AWS Cloud Development Kit (CDK), which is a framework for modeling cloud infrastructure, via code, that can then be synthesized and deployed to a user’s AWS environment. Artemis deploys serverless components, launched on demand, meaning the user can run load tests without having to manage their own servers.
+By using the command `artemis deploy`, the necessary components can be deployed to AWS. This command makes use of the AWS Cloud Development Kit (CDK), which is a framework for modeling cloud infrastructure, via code, that can then be synthesized and deployed to a user’s AWS environment. Artemis deploys serverless components, launched on demand, meaning the user can run load tests without having to manage their own servers.
 
 Deploying the infrastructure involves compiling the CDK code into a template which can then be used by the CloudFormation service to create the specified resources.
 
@@ -264,13 +256,9 @@ AWS CDK is not the only way to build out infrastructure on AWS. As mentioned pre
 
 ### 4.3 Starting a test with Artemis
 
-<p id="gdcalert16" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image16.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert17">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+Having deployed Artemis’ infrastructure, the user can utilize the Artemis CLI or built-in admin dashboard to initiate a load test. The user provides two inputs: the local file path to the test script and the number of load testing containers to spin up. The start command, `artemis run-test`, triggers an action causing the script to be uploaded to an S3 bucket and invokes a lambda function to spin up the total number of load testing containers specified by the user.
 
-![alt_text](images/image16.png 'image_tooltip')
-
-Figure 4.2. Each task running the test gets a copy of the test script from S3
-
-Having deployed Artemis’ infrastructure, the user can utilize the Artemis CLI to initiate a load test. The user provides two inputs: the local file path to the test script and the number of load testing containers to spin up. The start command, **artemis run-test**, triggers an action causing the script to be uploaded to an S3 bucket and invokes a lambda function to spin up the total number of load testing containers specified by the user.
+{{< figure src="../assets/29_script-from-s3-bucket.png" caption="Figure 4.2. Each task running the test gets a copy of the test script from S3" >}}
 
 S3 is AWS’ object storage service. Object storage provides a way to store unstructured data in a structurally flat data environment. There are no folders, directories, or complex hierarchies as in a file-based system. While cloud-based object storage is ideal for long-term data retention, here it was used as a means to an end; namely, as a simple way to copy a test script on a user’s machine to a resource that could be accessed by Artemis’ load testing containers.
 
@@ -282,79 +270,51 @@ Artemis’ infrastructure is accessible to the user through the built-in admin d
 
 ### 5.1 artemis deploy
 
-Deploying the infrastructure can be performed using **artemis deploy**. The user will receive confirmation in the terminal that the infrastructure was successfully deployed. A user would typically run this command once upon first using Artemis and before running any load tests.
+Deploying the infrastructure can be performed using `artemis deploy`. The user will receive confirmation in the terminal that the infrastructure was successfully deployed. A user would typically run this command once upon first using Artemis and before running any load tests.
 
-<p id="gdcalert17" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image17.gif). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert18">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image17.gif 'image_tooltip')
-
-Figure 5.1 Demo of the artemis deploy command running in the CLI
+{{< figure src="../assets/deploy.gif" caption="Figure 5.1 Demo of the artemis deploy command running in the CLI" >}}
 
 ### 5.2 artemis teardown
 
-When load testing has concluded, the infrastructure can be removed using **artemis teardown**. All components, with the exception of the database, will be removed from the user’s AWS infrastructure. A separate command, **artemis destroy-db**, is available if a user wishes to delete the database storing Artemis’ results.
+When load testing has concluded, the infrastructure can be removed using `artemis teardown`. All components, with the exception of the database, will be removed from the user’s AWS infrastructure. A separate command, `artemis destroy-db`, is available if a user wishes to delete the database storing Artemis’ results.
 
 ###
 
-<p id="gdcalert18" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image18.gif). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert19">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image18.gif 'image_tooltip')
-
-Figure 5.2 Demo of artemis teardown command running in the CLI
+{{< figure src="../assets/artemis_teardown.gif" caption="Figure 5.2 Demo of artemis teardown command running in the CLI" >}}
 
 ### 5.3 artemis run-test
 
-To initiate a test through the Artemis CLI, the user executes **artemis run-test** and specifies the path to the test script and the number of containers to spin up to generate the desired load. The user is presented with a three minute spinner that represents Artemis’ timestamp coordination function. This function ensures that the user’s test, across all containers, starts at the same time. This functionality will be explained in greater depth in the next section.
+To initiate a test through the Artemis CLI, the user executes `artemis run-test` and specifies the path to the test script and the number of containers to spin up to generate the desired load. The user is presented with a three minute spinner that represents Artemis’ timestamp coordination function. This function ensures that the user’s test, across all containers, starts at the same time. This functionality will be explained in greater depth in the next section.
 
 After three minutes have elapsed, the user is presented with confirmation that the test has started along with a unique ID assigned to the test. This ID will be present in every row of data in the database such that the data can be grouped by test when queried.
 
-<p id="gdcalert19" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image19.gif). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert20">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image19.gif 'image_tooltip')
-
-Figure 5.3 Demo of the artemis run-test command running in the CLI
+{{< figure src="../assets/artemis_run_test.gif" caption="Figure 5.3 Demo of the artemis run-test command running in the CLI" >}}
 
 Now that the test is running, the user can expect their test results to be stored in the database and may choose to launch a container running the Artemis Grafana dashboard.
 
 ### 5.4 artemis grafana-start
 
-To use Artemis’ Grafana dashboard, the user runs **artemis grafana-start** from the CLI. Once the container is up and running, the user will receive an IP address which they can access to view the dashboard.
+To use Artemis’ Grafana dashboard, the user runs `artemis grafana-start` from the CLI. Once the container is up and running, the user will receive an IP address which they can access to view the dashboard.
 
-<p id="gdcalert20" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image20.gif). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert21">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image20.gif 'image_tooltip')
-
-Figure 5.4 Demo of the artemis grafana-start command running in the CLI
+{{< figure src="../assets/artemis_grafana_start.gif" caption="Figure 5.4 Demo of the artemis grafana-start command running in the CLI" >}}
 
 Artemis’ default dashboard view displays the results of the most recent test, and the user can zoom into specific portions of the test by highlighting the areas of interest. A user is not confined to the provided dashboard and queries. They may add their own panels to the dashboard and define their own custom queries.
 
-<p id="gdcalert21" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image21.gif). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert22">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+{{< figure src="../assets/artemis_grafana2.gif" caption="Figure 5.5 Demo of user interacting with the Artemis Grafana dashboard" >}}
 
-![alt_text](images/image21.gif 'image_tooltip')
-
-Figure 5.5 Demo of user interacting with the Artemis Grafana dashboard
-
-When a user no longer needs to use the dashboard, they can run **artemis grafana-stop** to terminate the container.
+When a user no longer needs to use the dashboard, they can run `artemis grafana-stop` to terminate the container.
 
 ### 5.5 artemis sleep
 
-Artemis also provides the command **artemis sleep** to stop both the Telegraf and Grafana containers. The user can think of this as ensuring their infrastructure is in a “low power mode”. This command is useful when a user doesn’t want to teardown their infrastructure but is finished testing for the moment and wants to make sure that no containers are running in the background to prevent incurring unnecessary AWS charges.
+Artemis also provides the command `artemis sleep` to stop both the Telegraf and Grafana containers. The user can think of this as ensuring their infrastructure is in a “low power mode”. This command is useful when a user doesn’t want to teardown their infrastructure but is finished testing for the moment and wants to make sure that no containers are running in the background to prevent incurring unnecessary AWS charges.
 
-<p id="gdcalert22" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image22.gif). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert23">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image22.gif 'image_tooltip')
-
-    Figure 5.6 Demo of the artemis sleep command running in the CLI
+{{< figure src="../assets/artemis_sleep.gif" caption="Figure 5.6 Demo of the artemis sleep command running in the CLI" >}}
 
 ### 5.6 artemis admin-dashboard
 
-To launch the admin dashboard the user runs **artemis admin-dashboard**. This provides the Artemis user a visual interface to run all the previously mentioned CLI commands.
+To launch the admin dashboard the user runs `artemis admin-dashboard`. This provides the Artemis user a visual interface to run all the previously mentioned CLI commands.
 
-<p id="gdcalert23" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image23.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert24">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image23.png 'image_tooltip')
-
-Figure 5.7 Artemis admin dashboard
+{{< figure src="../assets/artemis_react_dash.png" caption="Figure 5.7 Artemis admin dashboard" >}}
 
 This dashboard uses a React frontend to make API calls to endpoints defined in an Express.js backend to execute a CLI command on a button click.
 
@@ -383,25 +343,17 @@ k6 aligned with this goal as test scripts are written in JavaScript. k6 itself i
 
 Generating load at scale requires compute resources beyond what a local environment or single virtual machine can provide. Artemis’ solution coordinates the running of multiple containers within a Virtual Private Cloud. These containers are shown as tasks in Figure 6.1.
 
-<p id="gdcalert24" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image24.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert25">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+{{< figure src="../assets/31_load-generation-architecture.png" caption="Figure 6.1 Load generation component of Artemis’ architecture." >}}
 
-![alt_text](images/image24.png 'image_tooltip')
-
-Figure 6.1 Load generation component of Artemis’ architecture
-
-A Virtual Private Cloud, or VPC, is a secure, logically isolated portion of the AWS infrastructure where the user can deploy their own resources. These tasks generate virtual users that perform requests against the API the user wishes to test. In the next section, the elements that make up Artemis’ load testing containers will be examined.
+A **Virtual Private Cloud**, or **VPC**, is a secure, logically isolated portion of the AWS infrastructure where the user can deploy their own resources. These tasks generate virtual users that perform requests against the API the user wishes to test. In the next section, the elements that make up Artemis’ load testing containers will be examined.
 
 #### 6.2.1 Running load tests in the cloud
 
-Each of the load testing instances pulls a custom image from AWS’s public container repository, known as Elastic Container Registry or ECR. The custom image was configured and published to ECR. It includes k6 and the artemis.js Node application.
+Each of the load testing instances pulls a custom image from AWS’s public container repository, known as Elastic Container Registry or ECR. The custom image was configured and published to ECR. It includes k6 and the `artemis.js` Node application.
 
-<p id="gdcalert25" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image25.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert26">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+{{< figure src="../assets/32_task-zoom-in.png" caption="Figure 6.2 The internals of a single load testing container." >}}
 
-![alt_text](images/image25.png 'image_tooltip')
-
-Figure 6.2 The internals of a single load testing container
-
-The Node script, **artemis.js**, fetches the previously uploaded test script from the S3 bucket, waits for a prescribed period for test start coordination, then uses k6 to run the test based on the provided script. The test results are then sent to a separate container for aggregation.
+The Node script, `artemis.js`, fetches the previously uploaded test script from the S3 bucket, waits for a prescribed period for test start coordination, then uses k6 to run the test based on the provided script. The test results are then sent to a separate container for aggregation.
 
 During a regular load test, a user may be spinning up one or more of these containers. Where are these containers running and how is the scaling of these containers handled? The answer is AWS Fargate and AWS Elastic Container Service on a VPC.
 
@@ -415,11 +367,7 @@ All of Artemis’ containerized applications run in Fargate instances. ECS allow
 
 One challenge when utilizing AWS Fargate instances is determining the best combination of CPU and memory for a specific use case. After testing various sizes of Fargate instances and analyzing Cloudwatch logs and graphical results for CPU and memory utilization, it was determined that the optimal number of Virtual Users per load testing container was 200. This gives the user flexibility in terms of overall total VUs and length of test duration. Artemis’ users write their test scripts for up to 200 VUs and then specify the number of tasks desired for a particular test run. With this information, Artemis can generate load across multiple containers to achieve a large total number of Virtual Users. For example, if a user wants to test for 5,000 VUs, they simply write their script based on 200 VUs and specify a task count of 25. Likewise, if a user wants to perform a load test that simulates 200 or fewer users, they can use the same test script and specify just one task.
 
-<p id="gdcalert26" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image26.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert27">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image26.png 'image_tooltip')
-
-Figure 6.3 Scaling of Fargate instances for an increasing number of virtual users
+{{< figure src="../assets/33_fargate-tasks.png" caption="Figure 6.3 Scaling of Fargate instances for an increasing number of virtual users." >}}
 
 Although ECS and Fargate made it easy to spin up serverless instances, a way to coordinate the starting of load tests across these multiple instances remained a problem. Ideally, all virtual users should be executing requests at the same time to accurately simulate the desired load. Otherwise, test results would not accurately reflect the test input and therefore invalidate the test itself.
 
@@ -427,43 +375,27 @@ Although ECS and Fargate made it easy to spin up serverless instances, a way to 
 
 ####
 
-<p id="gdcalert27" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image27.gif). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert28">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image27.gif 'image_tooltip')
-
-Figure 6.4 Tests start as soon as the container is spun up, leading to inaccurate results
+{{< figure src="../assets/34_async-tasks.png" caption="Figure 6.4 Tests start as soon as the container is spun up, leading to inaccurate results." >}}
 
 The question to answer then became: How can the spinning up of instances be decoupled from the starting of a test?
 
 AWS Step Functions was first considered to coordinate a series of lambdas for running tasks concurrently. AWS has a Distributed Load Testing Implementation Guide that makes use of Step Functions using worker tasks and a leader task. This required the leader task to communicate with each of the worker tasks using a Python script to create a socket on the workers to listen for a start message from the leader. This workflow went beyond what is described here to start multiple tests and would introduce unnecessary complexity to Artemis’ use case. Another option, and how the problem was ultimately addressed, was by introducing a delay to the running of the test script.
 
-<p id="gdcalert28" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image28.gif). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert29">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image28.gif 'image_tooltip')
-
-Figure 6.5 Test start at the same time, irrespective of when the container has spun up
+{{< figure src="../assets/35_test-run-delay.png" caption="Figure 6.5 Test start at the same time, irrespective of when the container has spun up." >}}
 
 This was achieved by generating a timestamp three minutes from when the Start Test Lambda is invoked. Each test container then calculates a specific wait time based on when it is created, using the initial timestamp as a reference. This wait time can be thought of as a container-specific timer, enabling test start synchronization.
 
 ### 6.3 Data aggregation
 
-<p id="gdcalert29" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image29.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert30">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image29.png 'image_tooltip')
-
-Figure 6.6 A high level overview of Artemis’ data aggregation component.
-
 A single container collects and processes all the test results generated by the load testing containers. In order to provide meaningful insights into the performance of the API, the metrics displayed to the user should reflect the load testing results across all containers.
+
+{{< figure src="../assets/38_architecture-aggregation-telegraf.png" caption="Figure 6.6 A high level overview of Artemis’ data aggregation component. " >}}
 
 #### 6.3.1 Why aggregation is necessary
 
 Generating load from multiple containers creates a problem in that the results generated by each container do not represent the load test as a whole. Instead, it represents the performance of the API from the viewpoint of a single container.
 
-<p id="gdcalert30" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image30.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert31">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image30.png 'image_tooltip')
-
-Figure 6.7 A generic data aggregation workflow
+{{< figure src="../assets/39_aggregating-funnel.png" caption="Figure 6.7 A generic data aggregation workflow. " >}}
 
 Aggregation of data was also necessary in providing meaningful results. Plotting too many data points would produce too much noise, inhibiting the user from understanding and interpreting the data correctly.
 
@@ -475,27 +407,15 @@ A solution was needed that would allow Artemis to funnel test results from all c
 
 First, a polling-based approach was examined. In this approach, k6 would perform the load test from the test containers and the results would be written to a file in either JSON or CSV format. Artemis would then tail the results file, sending the gathered results to be aggregated.
 
-<p id="gdcalert31" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image31.gif). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert32">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image31.gif 'image_tooltip')
-
-Figure 6.8 - Polling test containers for results
+{{< figure src="../assets/40_polling-approach.gif" caption="Figure 6.8 Polling test containers for results. " >}}
 
 An issue with this approach is that k6 consumes a large amount of memory when test results are written to a file. Every virtual user simulated by k6 stores a copy of its individual test result file in memory. This presented a problem because larger tests depleted the container memory prematurely and terminated the container. Even if k6 did not have this memory issue, the challenge of aggregation remained unsolved.
 
-<p id="gdcalert32" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image32.gif). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert33">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image32.gif 'image_tooltip')
-
-Figure 6.9 - Streaming-based approach using Telegraf
+{{< figure src="../assets/41_streaming-to-telegraf.gif" caption="Figure 6.9 Streaming-based approach using Telegraf. " >}}
 
 A streaming-based approach was then considered. Instead of bi-directional communication, a streaming approach entails a one-way data flow in near real-time. Each individual load test container sends data, as it is generated, to a single server. The server is configured to combine the results received at a regular time interval. After evaluating a number of data aggregation solutions, a tool called Telegraf was determined to be the right fit for Artemis.
 
-<p id="gdcalert33" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image33.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert34">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image33.png 'image_tooltip')
-
-Figure 6.10 - Example of Telegraf aggregating data points
+{{< figure src="../assets/42_what-is-telegraf.png" caption="Figure 6.10 Example of Telegraf aggregating data points. " >}}
 
 Telegraf is an open source data collection agent that is written in Go. It has no external dependencies and has minimal memory requirements. Telegraf includes dozens of built-in plugins that the user can activate as needed for their specific use case. These plugins provide a wide range of input, processing, aggregation and output functionality.
 
@@ -509,23 +429,15 @@ Having determined that Telegraf was Artemis’ best option for addressing the pr
 
 While all of Artemis’ containers run on a single VPC, the serverless nature of the implementation means that container instances get spun up and torn down on demand and the private and public IP addresses of the Telegraf container change whenever a new instance of Telegraf is created. A straightforward way for the current instance of the Telegraf container to be reachable by all of the test containers was needed.
 
-<p id="gdcalert34" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image34.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert35">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+{{< figure src="../assets/44_route53.png" caption="Figure 6.11 Setting and receiving an IP address from Route 53. " >}}
 
-![alt_text](images/image34.png 'image_tooltip')
-
-Figure 6.11 - Setting and receiving an IP address from Route 53
-
-This problem was solved by running the Telegraf container as a service within the ECS cluster and enabling **service discovery**. This allows for the ephemeral nature of the container to be maintained while providing a consistent service discovery endpoint for the test containers to connect to when sending results. If a user runs a test and a Telegraf instance is not running within the service, Artemis starts a new Telegraf container along with the test containers. Whenever a new Telegraf instance within that service is launched, ECS uses AWS CloudMap to update Route 53, which is AWS’ DNS service, with the IP address of the Telegraf container within the VPC. Route 53 then maps that address to the DNS of the service Artemis defined, so when the test containers send data to the endpoint [http://artemis-telegraf.artemis:8186](http://artemis-telegraf.artemis:8186), it is correctly routed to the currently running instance of Telegraf.
+This problem was solved by running the Telegraf container as a service within the ECS cluster and enabling **service discovery**. This allows for the ephemeral nature of the container to be maintained while providing a consistent service discovery endpoint for the test containers to connect to when sending results. If a user runs a test and a Telegraf instance is not running within the service, Artemis starts a new Telegraf container along with the test containers. Whenever a new Telegraf instance within that service is launched, ECS uses AWS CloudMap to update Route 53, which is AWS’ DNS service, with the IP address of the Telegraf container within the VPC. Route 53 then maps that address to the DNS of the service Artemis defined, so when the test containers send data to the endpoint `http://artemis-telegraf.artemis:8186`, it is correctly routed to the currently running instance of Telegraf.
 
 ### 6.4 Data storage
 
-<p id="gdcalert35" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image35.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert36">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image35.png 'image_tooltip')
-
-Figure 6.12 - High level overview highlighting the data storage component
-
 The next problem to consider was how to best store data long-term for historical monitoring purposes while retaining the scalable and serverless quality of Artemis’ architecture.
+
+{{< figure src="../assets/43_architecture-timestream.png" caption="Figure 6.12 High level overview highlighting the data storage component" >}}
 
 #### 6.4.1 Why store all this data?
 
@@ -559,31 +471,19 @@ Timestream uses SQL as its query language. Given the overall goal of making Arte
 
 This, combined with the fact that it integrates well with k6, Telegraf and Artemis’ overall architecture implementation, made Timestream the right choice for Artemis’ data storage component.
 
-<p id="gdcalert36" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image36.gif). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert37">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image36.gif 'image_tooltip')
-
-Figure 6.13 - Aggregated time-series data is inserted to Timestream database
+{{< figure src="../assets/44_telegraf_timestream.gif" caption="Figure 6.13 Aggregated time-series data is inserted to Timestream database" >}}
 
 ### 6.5 Result Visualization
 
 Artemis needed to provide the user with a means to make sense of the stored data in a way that was easy to understand. This leads to Artemis’ fourth and final component: result visualization.
 
-<p id="gdcalert37" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image37.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert38">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image37.png 'image_tooltip')
-
-Figure 6.14 - High level overview of the data visualization component
+{{< figure src="../assets/45_architecture-grafana-dashboard.png" caption="Figure 6.14 High level overview of the data visualization component" >}}
 
 #### 6.5.1 Grafana dashboard
 
 **Grafana** provides an open source solution for visualizing data over time via a customizable dashboard. It connects to several databases such as PostgreSQL, InfluxDB, MySQL, and AWS Timestream and allows the user to decide on what information to display by associating a data source and one or more database queries with a panel. A dashboard can be composed of several user-customized panels. At any point during the creation process, a dashboard’s configuration can be preserved as a JSON file and re-used as a template for other dashboards.
 
-<p id="gdcalert38" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image38.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert39">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image38.png 'image_tooltip')
-
-Figure 6.15 - A panel (top) and the associated data source and database query (bottom) that informs the graph displayed by the panel.
+{{< figure src="../assets/image30.png" caption="Figure 6.15 A panel (top) and the associated data source and database query (bottom) that informs the graph displayed by the panel." >}}
 
 Grafana was chosen for its modular, easy-to-use dashboard that allows for data to be visualized in different ways. Grafana was connected to Amazon Timestream via a plugin available from Grafana Labs. Although Artemis provides a pre-configured dashboard view, the user has the flexibility to display additional metrics that they deem important.
 
@@ -595,27 +495,15 @@ The four summary panels shown at the top of the dashboard provide statistics to 
 
 Total requests per second shows the number of requests made every second to all endpoints in the test script. On its own, this metric does not tell the user much about the performance of the API. But when request duration increases, or errors start to appear, it lets the user know at what point their system starts to break.
 
-<p id="gdcalert39" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image39.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert40">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+{{< figure src="../assets/grafana-top.png" caption="Figure 6.16 Top half of the Grafana dashboard showing the four summary panels and total requests per second." >}}
 
-![alt_text](images/image39.png 'image_tooltip')
+Figure 6.16 is the associated query that obtains the data from Timestream to illustrate the total requests/second. It locates the rows that have a value of `value_sum` within the measure_name column of the `http_reqs` table. A single `measure_value` within a `value_sum` row indicates the sum of HTTP requests made across all containers over the Telegraf aggregation period. On line 1, the sum of the number of HTTP requests is divided by the 10 second period to determine an approximate number of requests per second.
 
-Figure 6.16 - Top half of the Grafana dashboard showing the four summary panels and total requests per second.
+{{< figure src="../assets/image18.png" caption="Figure 6.17 Timestream query for total requests/second panel." >}}
 
-Figure 6.16 is the associated query that obtains the data from Timestream to illustrate the total requests/second. It locates the rows that have a value of “value_sum” within the measure_name column of the http_reqs table. A single measure_value within a “value_sum” row indicates the sum of HTTP requests made across all containers over the Telegraf aggregation period. On line 1, the sum of the number of HTTP requests is divided by the 10 second period to determine an approximate number of requests per second.
+HTTP Request Duration displays how long it takes to perform the entire request-response cycle. This metric is represented in four different ways: `min`, `p90`, `p95`, and `max`. The percentile values allow the user to determine the request duration that most users are experiencing. If these percentiles are complemented with minimum and maximum measurements, then it is possible to have a much more complete view of the data and better understand how the system behaved.
 
-<p id="gdcalert40" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image40.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert41">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image40.png 'image_tooltip')
-
-Figure 6.17 - Timestream query for total requests/second panel.
-
-HTTP Request Duration displays how long it takes to perform the entire request-response cycle. This metric is represented in four different ways: min, p90, p95, and max. The percentile values allow the user to determine the request duration that most users are experiencing. If these percentiles are complemented with minimum and maximum measurements, then it is possible to have a much more complete view of the data and better understand how the system behaved.
-
-<p id="gdcalert41" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image41.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert42">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image41.png 'image_tooltip')
-
-Figure 6.18 - Bottom half of the Grafana dashboard showing three panels: HTTP Request Duration, HTTP Failures, and Virtual Users
+{{< figure src="../assets/red_dots.png" caption="Figure 6.18 Bottom half of the Grafana dashboard showing three panels: HTTP Request Duration, HTTP Failures, and Virtual Users" >}}
 
 The HTTP Failures panel on the bottom left of Figure 6.18 displays dots that represent any response that returned with a status code in the 400 or 500 range. This allows the user to quickly determine how many errors occurred within a certain time period.
 
@@ -633,11 +521,9 @@ Artemis is not feature-complete; there are some additional capabilities that cou
 
 ## 8. References {#references}
 
-[1] [https://k6.io/blog/comparing-best-open-source-load-testing-tools/](https://k6.io/blog/comparing-best-open-source-load-testing-tools/) (local testing solution table)
+[1] [https://k6.io/blog/comparing-best-open-source-load-testing-tools/](https://k6.io/blog/comparing-best-open-source-load-testing-tools/)
 
-[2] [https://k6.io/what-to-consider-when-building-or-buying-a-load-testing-solution/](https://k6.io/what-to-consider-when-building-or-buying-a-load-testing-solution/) (quote saying databases can be a bottleneck)
-
-(more general references)
+[2] [https://k6.io/what-to-consider-when-building-or-buying-a-load-testing-solution/](https://k6.io/what-to-consider-when-building-or-buying-a-load-testing-solution/)
 
 ## Presentation {#presentation}
 

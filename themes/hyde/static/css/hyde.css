@@ -128,7 +128,7 @@ a.sidebar-nav-item:focus {
 
 @media (min-width: 48em) {
   .content {
-    max-width: 38rem;
+    max-width: 42rem;
     margin-left: 20rem;
     margin-right: 2rem;
   }
@@ -272,4 +272,67 @@ a.sidebar-nav-item:focus {
   position: fixed;
   right: 30px;
   bottom: 10px;
+}
+
+#team > ul {
+  padding: 40px 0 40px 0;
+  text-align: center;
+}
+
+#team li {
+  display: inline-block;
+  /* margin: 0 3%; */
+  vertical-align: top;
+}
+
+#team li {
+  width: 22%;
+}
+
+#team h3 {
+  margin-bottom: 5px;
+  font-size: 1rem;
+}
+
+#team a {
+  color: #282828;
+  text-decoration: none;
+}
+
+#team .team-members {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#team .individual .portrait {
+  border-radius: 100%;
+  /* margin: 0 auto 20px; */
+  padding: 0.5rem;
+  /* width: 10vw; */
+
+  /* max-width: 10vw; */
+}
+
+#team .individual p {
+  font-size: 0.8rem;
+}
+
+/* li.raul {
+  min-width: 130px;
+} */
+
+#team .icon-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#team .individual .icon {
+  border-radius: 0%;
+  min-width: 20px;
+  max-width: 20px;
+
+  /* margin-left: 27px;
+  margin-right: 5px; */
 }
