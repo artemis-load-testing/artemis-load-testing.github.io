@@ -425,7 +425,7 @@ Telegraf was chosen since it permitted Artemis to stream the data from every sin
 
 #### 6.3.3 Challenge: Container communication
 
-Having determined that Telegraf was Artemis’ best option for addressing the problem of data aggregation, the next problem to tackle was how to make the Telegraf container reachable by the numerous test containers executing **artemis.js** and running the user’s tests with k6.
+Having determined that Telegraf was Artemis’ best option for addressing the problem of data aggregation, the next problem to tackle was how to make the Telegraf container reachable by the numerous test containers executing `artemis.js` and running the user’s tests with k6.
 
 While all of Artemis’ containers run on a single VPC, the serverless nature of the implementation means that container instances get spun up and torn down on demand and the private and public IP addresses of the Telegraf container change whenever a new instance of Telegraf is created. A straightforward way for the current instance of the Telegraf container to be reachable by all of the test containers was needed.
 
@@ -525,8 +525,12 @@ Artemis is not feature-complete; there are some additional capabilities that cou
 
 [2] [https://k6.io/what-to-consider-when-building-or-buying-a-load-testing-solution/](https://k6.io/what-to-consider-when-building-or-buying-a-load-testing-solution/)
 
+---
+
 ## Presentation {#presentation}
 
 {{< youtube id="l-NEJnETKxs" title="Artemis Presentation" >}}
+
+---
 
 ## Our Team {#our_team}
