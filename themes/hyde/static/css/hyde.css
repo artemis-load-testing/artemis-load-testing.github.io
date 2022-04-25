@@ -47,6 +47,50 @@ figcaption {
   }
 }
 
+.whitespace {
+  min-height: 100vh;
+  margin-left: 10vw;
+}
+
+.banner-image {
+  margin-top: 10vh;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.banner-text {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.banner-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.banner-buttons .button {
+  margin-top: 1rem;
+  border: none;
+  color: #ffffff !important;
+  background-color: #218a70;
+  padding: 1em;
+  border-radius: 3em;
+  margin-left: 0.2rem;
+  text-align: center;
+}
+
+@media (min-width: 500px) {
+  .banner-buttons .button {
+    font-size: medium;
+    padding: 1em;
+    margin-left: 1rem;
+    color: #ffffff;
+  }
+}
+
 /*
  * Sidebar
  *
@@ -88,6 +132,7 @@ figcaption {
 .sidebar-nav {
   padding-left: 0;
   list-style: none;
+  line-height: 1.5;
 }
 .sidebar-nav-item {
   display: block;
@@ -118,7 +163,7 @@ figcaption {
   .sidebar-sticky {
     position: absolute;
     right: 1rem;
-    bottom: 1rem;
+    bottom: 3rem;
     left: 1rem;
   }
 }

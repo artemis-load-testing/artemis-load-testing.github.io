@@ -1,5 +1,21 @@
 {{ define "main" -}}
 <div class="posts">
+  <div class="whitespace">
+    <div class="banner-image">
+      <img src="../assets/Artemis_logo_color_300.png" />
+    </div>
+    <div class="banner-text">
+      <p>
+        Artemis is an open-source, serverless framework for scalable API load
+        testing.
+      </p>
+    </div>
+    <div class="banner-buttons">
+      <a href="/#case_study" class="button">Read the case study</a>
+      <a href="/#presentation" class="button">View presentation</a>
+    </div>
+  </div>
+
   {{ range .Site.RegularPages -}}
   <article class="post">
     <!-- <h1 class="post-title">
