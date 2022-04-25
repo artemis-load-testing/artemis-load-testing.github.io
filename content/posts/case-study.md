@@ -10,7 +10,7 @@ draft: false
 
 APIs are widely used and play an integral role in providing essential functionality to third-party applications. Given their vital nature, they should be tested continuously to ensure high availability. API load testing, or the process of simulating realistic traffic to an API to test its limits, can be performed using any number of available load testing tools in a local environment or in the cloud. Tests run locally often face a physical constraint, limiting the amount of load that can be generated. Alternatively, using a third-party cloud provider lacks flexibility in choosing test duration and volume on top of cost concerns.
 
-Artemis is an open source, serverless framework for scalable API load testing. It fills the gap by enabling the user to execute tests of varying volume and duration. The user can run tests that meet their needs, without the constraints of limited local resources or the limitations imposed by a paid cloud solution. Artemis is an easily deployable, cloud-based testing framework that provides near real-time results and robust data retention. Artemis utilizes an open source load testing tool with a performant runtime (written in Go) that leverages a ubiquitous scripting language (JavaScript) and provides a clean, customizable dashboard to visualize test results in a meaningful way.
+Artemis is an open-source, serverless framework for scalable API load testing. It fills the gap by enabling the user to execute tests of varying volume and duration. The user can run tests that meet their needs, without the constraints of limited local resources or the limitations imposed by a paid cloud solution. Artemis is an easily deployable, cloud-based testing framework that provides near real-time results and robust data retention. Artemis utilizes an open-source load testing tool with a performant runtime (written in Go) that leverages a ubiquitous scripting language (JavaScript) and provides a clean, customizable dashboard to visualize test results in a meaningful way.
 
 ### 0.1 Artemis Quickstart Guide
 
@@ -45,19 +45,19 @@ Usage: `artemis [options] [command]`
 
 **Login details for Artemis' Grafana dashboard:**
 
-| username | password         |
-| -------- | ---------------- |
-| artemis  | api_load_testing |
+| username  | password           |
+| --------- | ------------------ |
+| `artemis` | `api_load_testing` |
 
 ---
 
-## 1. Overview of APIs and Load Testing {#overview_api_load_testing}
+## 1. APIs and Load Testing {#overview_api_load_testing}
 
 ### 1.1 What is load testing?
 
 {{< figure src="../assets/6_what-is-load-testing.gif" caption="Figure 1.1 What is load testing?" >}}
 
-**Load testing** is the process of simulating usage of an application, website or collection of interconnected resources or services, to test their behavior under predefined conditions.
+**Load testing** is the process of simulating the usage of an application, website, or collection of interconnected resources or services, to test their behavior under predefined conditions.
 
 For example, a computer running a load test would simulate a number of users performing requests against a server under test. Results of this load test are then generated based on the responses received and specific metrics can be visualized based on those results.
 
@@ -65,7 +65,7 @@ For example, a computer running a load test would simulate a number of users per
 
 {{< figure src="../assets/7_why-load-test.gif" caption="Figure 1.2 Why load test?" >}}
 
-Load testing allows for errors, bugs and bottlenecks to be identified and fixed before deployment into a production environment. Additionally, load testing can confirm assumptions made about the performance of a company’s existing infrastructure and its capacity.
+Load testing allows for errors, bugs, and bottlenecks to be identified and fixed before deployment into a production environment. Additionally, load testing can confirm assumptions made about the performance of a company’s existing infrastructure and its capacity.
 
 ### 1.3 What forms of load testing exist?
 
@@ -81,11 +81,11 @@ API load testing follows a protocol-based load testing approach. Before delving 
 
 **API** stands for **Application Programming Interface**. APIs are vital tools for web applications since they allow the capabilities of one system to be used by another. If an application is treated as a black box, the API is like a set of rules that indicates how to interact with the application without having to know how the application works.
 
-**API load testing** is the process of simulating raw network requests, without regard to a graphical user interface, to measure the performance of a system. An effective API load test will generate the type of load a user would expect to see in production. This gives the user a realistic assessment of how their application architecture will behave and highlights any performance bottlenecks that need to be fixed prior to release. ​​
+**API load testing** is the process of simulating raw network requests, without regard to a graphical user interface, to measure the performance of a system. An effective API load test will generate the type of load a user would expect to see in production. This gives the user a realistic assessment of how their application architecture will behave and highlights any performance bottlenecks that need to be fixed before release. ​​
 
 ### 1.5 Why would APIs need load testing?
 
-Calls to API endpoints make up an increasing amount of public and private network traffic. Networking giant Cloudflare has reported that more than 50% of the requests they process are API calls and that API call traffic is growing twice as fast as browser-based web traffic.
+Calls to API endpoints make up an increasing amount of public and private network traffic. Networking giant Cloudflare has reported that more than 50% of the requests they process are API calls and that API call traffic is growing twice as fast as browser-based web traffic.¹
 
 For some companies, APIs are the very focus of their business. Companies like this may expose several endpoints that perform tasks or retrieve data upon receiving requests. Since their APIs are their primary product, it is important to know at what point their performance would degrade, or at what point they would break altogether.
 
@@ -95,7 +95,7 @@ Global payment provider Stripe is an excellent example of this type of company.
 
 Stripe provides an API that allows businesses to access its services without needing to know anything about how Stripe implements its core functionality of processing payments. Users just need to provide the relevant information to Stripe using the rules defined by Stripe’s API. It is up to Stripe to ensure that the user receives timely and meaningful responses to their requests.
 
-High availability is essential for companies like Stripe and the customers that rely on them. They face severe consequences for any degradation of service when it comes to the performance of their APIs. As an example, a single minute of downtime on Black Friday could cost a business thousands, tens of thousands or even hundreds of thousands of dollars. Conversely, a company that has done adequate load testing, and is able to perform as expected during peak traffic, puts themselves in a position to maintain existing customers, attract new customers, and increase sales.
+High availability is essential for companies like Stripe and the customers that rely on them. They face severe consequences for any degradation of service when it comes to the performance of their APIs. As an example, a single minute of downtime on Black Friday could cost a business thousands, tens of thousands, or even hundreds of thousands of dollars. Conversely, a company that has done adequate load testing, and can perform as expected during peak traffic, puts itself in a position to maintain existing customers, attract new customers, and increase sales.
 
 To get an understanding of what load testing entails, it is useful to start by looking at how a load test is written.
 
@@ -103,7 +103,7 @@ To get an understanding of what load testing entails, it is useful to start by l
 
 {{< figure src="../assets/pokeapi.png" caption="Figure 1.5 An example of an API load testing tool test script." >}}
 
-Test scripts are executed with the help of a load testing tool. Load testing tools are used for load generation, simulating how real users would interact with an application, website, or other network resource that accepts protocol-based requests. Figure 1.5 shows an example of a simple load test script. When a user writes a test script, the goal is to simulate a realistic number of users that will interact with the API and the manner in which they will interact with it. These simulated users are often referred to as virtual users.
+Test scripts are executed with the help of a load testing tool. Load testing tools are used for load generation, simulating how real users would interact with an application, website, or other network resources that accept protocol-based requests. Figure 1.5 shows an example of a simple load test script. When a user writes a test script, the goal is to simulate a realistic number of users that will interact with the API and how they will interact with it. These simulated users are often referred to as virtual users.
 
 **Virtual Users** (**VUs**) mimic the behavior of a real user by performing separate, concurrent executions of a test script. For example, they can make HTTP requests against a webpage or API. A virtual user is not limited to making simple, single requests, but rather can execute an entire _scenario_ of actions against a network resource.
 
@@ -111,9 +111,9 @@ A **scenario** describes a sequence of endpoints traversed by a virtual user. Fo
 
 On line 6 in Figure 1.5, the target attribute with a value of 200 refers to the number of VUs to be simulated in the first two minutes of the test.
 
-{{< figure src="../assets/200_vus.png" caption="Figure 1.6 A graph of virtual users simulated over the duration of a test." >}}
+{{< figure src="../assets/200_vus.png" caption="Figure 1.6 A graph of virtual users simulated throughout a test." >}}
 
-This particular test is designed to ramp from 0 to 200 virtual users (VUs) over the course of the first two minutes, then gradually decrease the VU number to 100 over the next minute and a half, and finally decrease the virtual user count to zero over the last 30 seconds of the load test. The desired change in VUs over the duration of the test is shown by Figure 1.6.
+This particular test is designed to ramp from 0 to 200 virtual users (VUs) over the first two minutes, then gradually decrease the VU number to 100 over the next minute and a half, and finally, decrease the virtual user count to zero over the last 30 seconds of the load test. The desired change in VUs throughout the test is shown in Figure 1.6.
 
 {{< figure src="../assets/k6_output.png" caption="Figure 1.7. An example of a load test output." >}}
 
@@ -123,27 +123,27 @@ After the load test has completed execution, the user is presented with the resu
 
 ## 2. Existing Solutions {#existing_solutions}
 
-Companies that need a flexible, performant load testing solution to ensure high availability of their APIs generally pursue one of two avenues: implement an open source tool in a local environment or pay for a cloud-based solution.
+Companies that need a flexible, performant load testing solution to ensure the high availability of their APIs generally pursue one of two avenues: implement an open-source tool in a local environment or pay for a cloud-based solution.
 
-### 2.1 Local open source load testing solutions
+### 2.1 Local open-source load testing solutions
 
-JMeter, Gatling and k6 are some of the more commonly used API load testing tools that are available and can be run locally.
+JMeter, Gatling, and k6 are some of the more commonly used API load testing tools that are available and can be run locally.
 
 Each of these tools provides the functionality to perform protocol-based load testing. These tools are written in a variety of different languages and vary in the way a user would create and run tests. JMeter has limited scripting capabilities; tests are composed primarily through a GUI whereas Gatling and k6 tests must be written as scripts in the prescribed language. For example, k6 tests are written entirely in JavaScript and Gatling tests are written in a domain-specific language (DSL).
 
-{{< figure src="../assets/fig2_1.png" caption="Figure 2.1 Comparison chart of three prominent load testing tools: JMeter, Gatling, and k6 ¹" >}}
+{{< figure src="../assets/fig2_1.png" caption="Figure 2.1 Comparison chart of three prominent load testing tools: JMeter, Gatling, and k6 ²" >}}
 
-A consideration when comparing local open source solutions is memory requirements. In Figure 2.1, the max traffic generation capability results, measured in requests per second (RPS), are based on each tool running on the same hardware. Max traffic generation capability is closely tied to memory usage. A tool that is more resource efficient will be able to perform a higher number of requests while using less memory. With such varying memory usage amounts it is important to understand the capabilities of an individual machine before performing tests.
+A consideration when comparing local open-source solutions is memory requirements. In Figure 2.1, the max traffic generation capability results, measured in requests per second (RPS), are based on each tool running on the same hardware. Max traffic generation capability is closely tied to memory usage. A tool that is more resource-efficient will be able to perform a higher number of requests while using less memory. With such varying memory usage amounts, it is important to understand the capabilities of an individual machine before performing tests.
 
-### 2.2 Limitations of using open source solutions locally
+### 2.2 Limitations of using open-source solutions locally
 
-The following section discusses a number of limitations shared by API load testing tools, using k6 as an example.
+The following section discusses some limitations shared by API load testing tools, using k6 as an example.
 
 #### 2.2.1 CPU and Memory restrictions
 
 The largest limitation when using an API load testing solution locally is that the amount of load generated is limited to a single machine’s memory and CPU. Even though k6 is typically considered a more performant load testing tool, CPU and memory limitations remain a concern.
 
-Research was conducted to test the hardware limits of two standard computers that could be used in a development setting. Figure 2.2 summarizes the observations of this research. It shows the output for two tests of 600 and 1000 virtual users running the same two minute test script on different machines. Computer 1 has 8GB RAM while computer 2 has 32 GB of RAM, both using an 8 core CPU.
+Research was conducted to test the hardware limits of two standard computers that could be used in a development setting. Figure 2.2 summarizes the observations of this research. It shows the output for two tests of 600 and 1000 virtual users running the same two-minute test script on different machines. Computer 1 has 8GB RAM while computer 2 has 32 GB of RAM, both using an 8 core CPU.
 
 {{< figure src="../assets/fig2_2.png" caption="Figure 2.2 A comparison of two computers with different compute resources simulating the same number of VUs but producing a different number of requests." >}}
 
@@ -159,41 +159,41 @@ Another limitation in using local load testing tools is the lack of available re
 
 {{< figure src="../assets/k6_run.gif" caption="Figure 2.3 Local k6 test running and completing from the CLI." >}}
 
-#### 2.2.3 No graphical representation of results after test completes
+#### 2.2.3 No graphical representation of results after the test completes
 
-The open source version of k6, like many other local load testing tools, provides no default graphical representation of test results. The user may specify an output file, in JSON or CSV format, to capture the more granular results of their tests as seen in Figure 2.4.
+The open-source version of k6, like many other local load testing tools, provides no default graphical representation of test results. The user may specify an output file, in JSON or CSV format, to capture the more granular results of their tests as seen in Figure 2.4.
 
 {{< figure src="../assets/k6_csv_results.png" caption="Figure 2.4 CSV k6 test result output, rows 12-48361 are hidden." >}}
 
 However, the user will still need to come up with a way to process and parse that data and visualize it in a meaningful way.
 
-### 2.3 Building a custom solution around an open source tool
+### 2.3 Building a custom solution around an open-source tool
 
-Given the limitations described in the preceding sections, a company may consider building a custom solution around an open source tool. As the application and testing framework grows, so should the load testing solution. Building a scalable load testing application is not an easy undertaking, however; along with committing resources for long-term maintenance, there are known risks with developing in-house tools that are not mission-critical.
+Given the limitations described in the preceding sections, a company may consider building a custom solution around an open-source tool. As the application and testing framework grows, so should the load testing solution. Building a scalable load testing application is not an easy undertaking, however; along with committing resources for long-term maintenance, there are known risks with developing in-house tools that are not mission-critical.
 
 {{< figure src="../assets/22_inhouse-table.png" caption="Figure 2.5 In-house solution features" >}}
 
-Additionally, technical debt and project delays can be expected due to the lack of domain expertise and effort spent on building a reliable tool. Assuming these challenges can be surmounted, the user is still at risk of reinventing the wheel unless a highly customized solution is a necessity. The biggest benefit of building a load testing solution from scratch is flexibility of implementation, which the user pays for by managing several unknowns.
+Additionally, technical debt and project delays can be expected due to the lack of domain expertise and effort spent on building a reliable tool. Assuming these challenges can be surmounted, the user is still at risk of reinventing the wheel unless a highly customized solution is a necessity. The biggest benefit of building a load testing solution from scratch is the flexibility of implementation, which the user pays for by managing several unknowns.
 
 These challenges are usually enough to convince developer teams to search for pre-packaged solutions, which are available in the form of cloud-based tools.
 
 ### 2.4 Cloud-based load testing solutions
 
-Cloud-based SaaS load testing solutions are well-established and provide the sought-after traits of reliability and scalability. They abstract away much of the complexity required to automate tests, scale clusters, and produce visual results of the test data. Many open source load testing solutions also offer enterprise-level software for performing large-scale tests from the cloud. BlazeMeter, Gatling Enterprise and k6 Cloud are the cloud-based equivalents of JMeter, Gatling, and k6, respectively. These solutions address a number of the previously mentioned shortcomings of running tests locally. One such shortcoming is a lack of real-time results visualization. An example of how cloud based solutions deal with this issue can be seen in Figure 2.6 which shows a k6 cloud visualization dashboard.
+Cloud-based SaaS load testing solutions are well-established and provide the sought-after traits of reliability and scalability. They abstract away much of the complexity required to automate tests, scale clusters, and produce visual results of the test data. Many open-source load testing solutions also offer enterprise-level software for performing large-scale tests from the cloud. BlazeMeter, Gatling Enterprise, and k6 Cloud are the cloud-based equivalents of JMeter, Gatling, and k6, respectively. These solutions address a number of the previously mentioned shortcomings of running tests locally. One such shortcoming is a lack of real-time results visualization. An example of how cloud-based solutions deal with this issue can be seen in Figure 2.6 which shows a k6 Cloud visualization dashboard.
 
 {{< figure src="../assets/k6_cloud.png" caption="Figure 2.6 k6 Cloud test visualization" >}}
 
-Cloud-based solutions provide real-time visualized results of the test. For some solutions this is a built-in feature, whereas other solutions require setup to output results to a third-party tool. Real-time visualization of results provides indication of any performance concerns as they occur during the test. Imagine running a 6 hour test without any insight into the results, only to find out that there was an unexpectedly high failure rate within the first thirty minutes. Without near real-time result visualization, a user could be wasting potential development time waiting for the tests to complete.
+Cloud-based solutions provide real-time visualized results of the test. For some solutions, this is a built-in feature, whereas other solutions require setup to output results to a third-party tool. Real-time visualization of results indicates any performance concerns as they occur during the test. Imagine running a 6-hour test without any insight into the results, only to find out that there was an unexpectedly high failure rate within the first thirty minutes. Without near real-time result visualization, a user could be wasting potential development time waiting for the tests to complete.
 
 A major benefit of using a cloud-based solution is the ability to simulate a much larger number of virtual users than could be achieved with a local load testing solution. The cloud provider is responsible for provisioning resources based on testing needs.
 
 {{< figure src="../assets/fig2_7.png" caption="Figure 2.7 Comparison of highest tier cloud-based solutions as of April 2022" >}}
 
-Figure 2.7 is an example of the highest tier monthly subscription offered by the aforementioned cloud providers. Many of these solutions also provide a separate breakdown for individual endpoints within a given scenario. Other features such as scheduling tests, generating reports, and providing performance insights are common amongst vendors in this space. Although the number of virtual users, test duration and data storage differs between solutions, they share a common subscription model that locks users into the tier’s offerings.
+Figure 2.7 is an example of the highest tier monthly subscription offered by the aforementioned cloud providers. Many of these solutions also provide a separate breakdown for individual endpoints within a given scenario. Other features such as scheduling tests, generating reports, and providing performance insights are common amongst vendors in this space. Although the number of virtual users, test duration, and data storage differ between solutions, they share a common subscription model that locks users into the tier’s offerings.
 
 ### 2.5 Limitations with existing cloud solutions
 
-The following section discusses a number of limitations shared by cloud-based load testing tools, using k6 cloud as an example.
+The following section discusses some limitations shared by cloud-based load testing tools, using k6 Cloud as an example.
 
 #### 2.5.1 Subscription model restrictions
 
@@ -201,9 +201,9 @@ Cloud-based load testing tools typically require a subscription that imposes lim
 
 {{< figure src="../assets/21_k6cloud-tiers-table.png" caption="Figure 2.8 k6 Cloud subscription tiers" >}}
 
-As seen in Figure 2.8, if the user were subscribed to Tier 1 and wanted to run a continuous 30 minute test, they would need to upgrade to the next tier or settle for the 15 minute limit. If they wanted to simulate 2000 virtual users, Tier 3 would be the only option even if the test lasted 15 minutes or less. Although the user’s testing needs span multiple tiers, they would be forced to choose the least restrictive option and could possibly be overpaying for functionality they do not need.
+As seen in Figure 2.8, if the user were subscribed to Tier 1 and wanted to run a continuous 30-minute test, they would need to upgrade to the next tier or settle for the 15 minute limit. If they wanted to simulate 2000 virtual users, Tier 3 would be the only option even if the test lasted 15-minutes or less. Although the user’s testing needs span multiple tiers, they would be forced to choose the least restrictive option and could be overpaying for functionality they do not need.
 
-The subscription-based model these companies use locks users into only simulating a certain amount of virtual users, restricts them into tests of a certain length, and limits the amount of total tests performed over a given time period. Large companies do not have to choose; they can simply select the most expensive option as long as it gets the job done. Small and medium-sized companies do not have this luxury; they must make a choice between testing needs and budget.
+The subscription-based model these companies use locks users into only simulating a certain amount of virtual users, restricts them to tests of a certain length, and limits the number of total tests performed over a given period. Large companies do not have to choose; they can simply select the most expensive option as long as it gets the job done. Small and medium-sized companies do not have this luxury; they must choose between testing needs and budget.
 
 {{< figure src="../assets/23_saas-table.png" caption="Figure 2.9 Software-as-a-service (SaaS) vendor features" >}}
 
@@ -211,7 +211,7 @@ Cloud-based SaaS tools can be both costly and restrictive, providing unnecessary
 
 ## 3. Use case {#use_case}
 
-Using a load testing tool locally is adequate for simulating a small amount of load, and when simple, summary reporting at the end of the test is sufficient. When larger scale tests need to be performed and a more thorough result visualization is needed, cloud-based SaaS solutions can meet that need. These solutions also offer additional features, but introduce testing limitations as well. If a user is only interested in overcoming the load and visualization limitations of a local tool, and does not have a need for additional features, then a cloud-based SaaS solution may not be the right fit.
+Using a load testing tool locally is adequate for simulating a small amount of load, and when simple, summary reporting at the end of the test is sufficient. When larger-scale tests need to be performed and a more thorough result visualization is needed, cloud-based SaaS solutions can meet that need. These solutions also offer additional features but introduce testing limitations as well. If a user is only interested in overcoming the load and visualization limitations of a local tool and does not require additional features, then a cloud-based SaaS solution may not be the right fit.
 
 Artemis allows users to overcome the load generation limitations of a single machine while providing access to near real-time results visualization. It does so while retaining the testing flexibility that a SaaS subscription tier may restrict.
 
@@ -244,7 +244,7 @@ These components are discussed in greater depth in the upcoming _Design Decision
 
 Prior to load generation, the supporting infrastructure needs to be in place.
 
-By using the command `artemis deploy`, the necessary components can be deployed to AWS. This command makes use of the AWS Cloud Development Kit (CDK), which is a framework for modeling cloud infrastructure, via code, that can then be synthesized and deployed to a user’s AWS environment. Artemis deploys serverless components, launched on demand, meaning the user can run load tests without having to manage their own servers.
+By using the command `artemis deploy`, the necessary components can be deployed to AWS. This command makes use of the AWS Cloud Development Kit (CDK), which is a framework for modeling cloud infrastructure, via code, that can then be synthesized and deployed to a user’s AWS environment. Artemis deploys serverless components, launched on-demand, meaning the user can run load tests without having to manage their own servers.
 
 Deploying the infrastructure involves compiling the CDK code into a template which can then be used by the CloudFormation service to create the specified resources.
 
@@ -262,11 +262,11 @@ Having deployed Artemis’ infrastructure, the user can utilize the Artemis CLI 
 
 S3 is AWS’ object storage service. Object storage provides a way to store unstructured data in a structurally flat data environment. There are no folders, directories, or complex hierarchies as in a file-based system. While cloud-based object storage is ideal for long-term data retention, here it was used as a means to an end; namely, as a simple way to copy a test script on a user’s machine to a resource that could be accessed by Artemis’ load testing containers.
 
-Since local files can’t be read by a Lambda function, S3 serves as a stepping stone for getting the test script onto the AWS infrastructure. AWS Lambdas fall in the realm of Functions-as-a-Service. Functions-as-a-Service implementations make functions, or chunks of code, available on demand to respond to events as they occur. The Functions-as-a-Service provider manages the underlying infrastructure and the user is charged by execution time. In Artemis’ case, the Start Test lambda pictured in Figure 4.2 spins up the specified number of containers. Each application in the container then creates a local copy of the test script and starts the test.
+Since local files can’t be read by a Lambda function, S3 serves as a stepping stone for getting the test script onto the AWS infrastructure. AWS Lambdas fall in the realm of Functions-as-a-Service. Functions-as-a-Service implementations make functions available on-demand to respond to events as they occur. The Functions-as-a-Service provider manages the underlying infrastructure and the user is charged by execution time. In Artemis’ case, the Start Test lambda pictured in Figure 4.2 spins up the specified number of containers. Each application in the container then creates a local copy of the test script and starts the test.
 
 ## 5. Using Artemis {#using_artemis}
 
-Artemis’ infrastructure is accessible to the user through the built-in admin dashboard and CLI. This enables the user to run tests, visualize results, and manage, deploy and teardown their load testing infrastructure in AWS.
+Artemis’ infrastructure is accessible to the user through the built-in admin dashboard and CLI. This enables the user to run tests, visualize results, and manage, deploy, and teardown their load testing infrastructure in AWS.
 
 ### 5.1 artemis deploy
 
@@ -276,7 +276,7 @@ Deploying the infrastructure can be performed using `artemis deploy`. The user w
 
 ### 5.2 artemis teardown
 
-When load testing has concluded, the infrastructure can be removed using `artemis teardown`. All components, with the exception of the database, will be removed from the user’s AWS infrastructure. A separate command, `artemis destroy-db`, is available if a user wishes to delete the database storing Artemis’ results.
+When load testing has concluded, the infrastructure can be removed using `artemis teardown`. All components, except for the database, will be removed from the user’s AWS infrastructure. A separate command, `artemis destroy-db`, is available if a user wishes to delete the database storing Artemis’ results.
 
 ###
 
@@ -286,7 +286,7 @@ When load testing has concluded, the infrastructure can be removed using `artemi
 
 To initiate a test through the Artemis CLI, the user executes `artemis run-test` and specifies the path to the test script and the number of containers to spin up to generate the desired load. The user is presented with a three minute spinner that represents Artemis’ timestamp coordination function. This function ensures that the user’s test, across all containers, starts at the same time. This functionality will be explained in greater depth in the next section.
 
-After three minutes have elapsed, the user is presented with confirmation that the test has started along with a unique ID assigned to the test. This ID will be present in every row of data in the database such that the data can be grouped by test when queried.
+After three-minutes have elapsed, the user is presented with confirmation that the test has started along with a unique ID assigned to the test. This ID will be present in every row of data in the database such that the data can be grouped by test when queried.
 
 {{< figure src="../assets/artemis_run_test.gif" caption="Figure 5.3 Demo of the artemis run-test command running in the CLI" >}}
 
@@ -294,7 +294,7 @@ Now that the test is running, the user can expect their test results to be store
 
 ### 5.4 artemis grafana-start
 
-To use Artemis’ Grafana dashboard, the user runs `artemis grafana-start` from the CLI. Once the container is up and running, the user will receive an IP address which they can access to view the dashboard.
+To use Artemis’ Grafana dashboard, the user runs `artemis grafana-start` from the CLI. Once the container is up and running, the user will receive an IP address that they can access to view the dashboard.
 
 {{< figure src="../assets/artemis_grafana_start.gif" caption="Figure 5.4 Demo of the artemis grafana-start command running in the CLI" >}}
 
@@ -306,7 +306,7 @@ When a user no longer needs to use the dashboard, they can run `artemis grafana-
 
 ### 5.5 artemis sleep
 
-Artemis also provides the command `artemis sleep` to stop both the Telegraf and Grafana containers. The user can think of this as ensuring their infrastructure is in a “low power mode”. This command is useful when a user doesn’t want to teardown their infrastructure but is finished testing for the moment and wants to make sure that no containers are running in the background to prevent incurring unnecessary AWS charges.
+Artemis also provides the command `artemis sleep` to stop both the Telegraf and Grafana containers. The user can think of this as ensuring their infrastructure is in a “low power mode”. This command is useful when a user doesn’t want to tear down their infrastructure but is finished testing for the moment and wants to make sure that no containers are running in the background to prevent incurring unnecessary AWS charges.
 
 {{< figure src="../assets/artemis_sleep.gif" caption="Figure 5.6 Demo of the artemis sleep command running in the CLI" >}}
 
@@ -320,7 +320,7 @@ This dashboard uses a React frontend to make API calls to endpoints defined in a
 
 ## 6. Design Decisions {#design_decisions}
 
-When building Artemis’ architecture, a number of options were considered in order to achieve the goal of a scalable and flexible solution. This section explores the design decisions and tradeoffs that were made while building Artemis.
+When building Artemis’ architecture, several options were considered to achieve the goal of a scalable and flexible solution. This section explores the design decisions and tradeoffs that were made while building Artemis.
 
 ### 6.1 Load testing tool
 
@@ -328,16 +328,16 @@ Artemis required the use of a load testing tool to create scenarios and generate
 
 There were two characteristics of interest while evaluating different load testing tools for Artemis:
 
-- User is able to write a test script in a ubiquitous language
+- User can write a test script in a ubiquitous language
 - Tool generates adequate load using minimal resources
 
-JMeter, Gatling, and k6 were the three options considered. All of these tools allow for API load testing, but differ when it comes to scripting vs non-scripting, language used to write tests, and resources used to generate load.
+JMeter, Gatling, and k6 were the three options considered. All of these tools allow for API load testing, but differ when it comes to scripting vs non-scripting, the language used to write tests, and resources used to generate load.
 
-While JMeter performs protocol-based load testing, test scripts are created in a GUI, making JMeter an unsuitable choice. Artemis needed a script-based tool to control functionality from the CLI. Additionally, the use case is aimed towards developers that would already be familiar with writing tests in code and using the CLI.
+While JMeter performs protocol-based load testing, test scripts are created in a GUI, making JMeter an unsuitable choice. Artemis needed a script-based tool to control functionality from the CLI. Additionally, the use case is aimed toward developers that would already be familiar with writing tests in code and using the CLI.
 
-Gatling was closer to the required load testing tool as it is a script-based, non-GUI solution. However, to use Gatling, engineers would have to learn a domain specific language (DSL). Engineers at a small or medium-sized company may not have the time to learn another language. It was prefered to use a widely used language, rather than a DSL, to fit the use case of being easy to deploy and use for web developers.
+Gatling was closer to the required load testing tool as it is a script-based, non-GUI solution. However, to use Gatling, engineers would have to learn a domain-specific language (DSL). Engineers at a small or medium-sized company may not have the time to learn another language. It was preferred to use a widely used language, rather than a DSL, to fit the use case of being easy to deploy and use for web developers.
 
-k6 aligned with this goal as test scripts are written in JavaScript. k6 itself is written in Go, which is built with performance in mind; its low memory footprint means k6 provides the capability of producing more load while using the same resources, compared to JMeter and Gatling. This made k6 a suitable choice to integrate into Artemis’ architecture..
+k6 aligned with this goal as test scripts are written in JavaScript. k6 itself is written in Go, which is built with performance in mind; its low memory footprint means k6 provides the capability of producing more load while using the same resources, compared to JMeter and Gatling. This made k6 a suitable choice to integrate into Artemis’ architecture.
 
 ### 6.2 Load generation
 
@@ -375,19 +375,19 @@ Although ECS and Fargate made it easy to spin up serverless instances, a way to 
 
 ####
 
-{{< figure src="../assets/34_async-tasks.png" caption="Figure 6.4 Tests start as soon as the container is spun up, leading to inaccurate results." >}}
+{{< figure src="../assets/34_async-test-start.gif" caption="Figure 6.4 Tests start as soon as the container is spun up, leading to inaccurate results." >}}
 
 The question to answer then became: How can the spinning up of instances be decoupled from the starting of a test?
 
 AWS Step Functions was first considered to coordinate a series of lambdas for running tasks concurrently. AWS has a Distributed Load Testing Implementation Guide that makes use of Step Functions using worker tasks and a leader task. This required the leader task to communicate with each of the worker tasks using a Python script to create a socket on the workers to listen for a start message from the leader. This workflow went beyond what is described here to start multiple tests and would introduce unnecessary complexity to Artemis’ use case. Another option, and how the problem was ultimately addressed, was by introducing a delay to the running of the test script.
 
-{{< figure src="../assets/35_test-run-delay.png" caption="Figure 6.5 Test start at the same time, irrespective of when the container has spun up." >}}
+{{< figure src="../assets/35_sync-test-start.gif" caption="Figure 6.5 Test start at the same time, irrespective of when the container has spun up." >}}
 
 This was achieved by generating a timestamp three minutes from when the Start Test Lambda is invoked. Each test container then calculates a specific wait time based on when it is created, using the initial timestamp as a reference. This wait time can be thought of as a container-specific timer, enabling test start synchronization.
 
 ### 6.3 Data aggregation
 
-A single container collects and processes all the test results generated by the load testing containers. In order to provide meaningful insights into the performance of the API, the metrics displayed to the user should reflect the load testing results across all containers.
+A single container collects and processes all the test results generated by the load testing containers. To provide meaningful insights into the performance of the API, the metrics displayed to the user should reflect the load testing results across all containers.
 
 {{< figure src="../assets/38_architecture-aggregation-telegraf.png" caption="Figure 6.6 A high level overview of Artemis’ data aggregation component. " >}}
 
@@ -397,9 +397,9 @@ Generating load from multiple containers creates a problem in that the results g
 
 {{< figure src="../assets/39_aggregating-funnel.png" caption="Figure 6.7 A generic data aggregation workflow. " >}}
 
-Aggregation of data was also necessary in providing meaningful results. Plotting too many data points would produce too much noise, inhibiting the user from understanding and interpreting the data correctly.
+Aggregation of data was also necessary for providing meaningful results. Plotting too many data points would produce too much noise, inhibiting the user from understanding and interpreting the data correctly.
 
-Data aggregation reduces the number of writes since the amount of test results are reduced before they reach the database. Reads also go down, since Artemis’ Grafana dashboard does not need to query as many data points to display results.
+Data aggregation reduces the number of writes since the number of test results is reduced before they reach the database. Reads also go down, since Artemis’ Grafana dashboard does not need to query as many data points to display results.
 
 A solution was needed that would allow Artemis to funnel test results from all containers into a central location, where the aggregation of said results could proceed. Two approaches were considered to solve this problem.
 
@@ -409,25 +409,25 @@ First, a polling-based approach was examined. In this approach, k6 would perform
 
 {{< figure src="../assets/40_polling-approach.gif" caption="Figure 6.8 Polling test containers for results. " >}}
 
-An issue with this approach is that k6 consumes a large amount of memory when test results are written to a file. Every virtual user simulated by k6 stores a copy of its individual test result file in memory. This presented a problem because larger tests depleted the container memory prematurely and terminated the container. Even if k6 did not have this memory issue, the challenge of aggregation remained unsolved.
+An issue with this approach is that k6 consumes a large amount of memory when test results are written to a file. Every virtual user simulated by k6 stores a copy of its test result file in memory. This presented a problem because larger tests depleted the container memory prematurely and terminated the container. Even if k6 did not have this memory issue, the challenge of aggregation remained unsolved.
 
 {{< figure src="../assets/41_streaming-to-telegraf.gif" caption="Figure 6.9 Streaming-based approach using Telegraf. " >}}
 
-A streaming-based approach was then considered. Instead of bi-directional communication, a streaming approach entails a one-way data flow in near real-time. Each individual load test container sends data, as it is generated, to a single server. The server is configured to combine the results received at a regular time interval. After evaluating a number of data aggregation solutions, a tool called Telegraf was determined to be the right fit for Artemis.
+A streaming-based approach was then considered. Instead of bi-directional communication, a streaming approach entails a one-way data flow in near real-time. Each load testing container sends data, as it is generated, to a single server. The server is configured to combine the results received at a regular time interval. After evaluating a number of data aggregation solutions, a tool called Telegraf was determined to be the right fit for Artemis.
 
 {{< figure src="../assets/42_what-is-telegraf.png" caption="Figure 6.10 Example of Telegraf aggregating data points. " >}}
 
-Telegraf is an open source data collection agent that is written in Go. It has no external dependencies and has minimal memory requirements. Telegraf includes dozens of built-in plugins that the user can activate as needed for their specific use case. These plugins provide a wide range of input, processing, aggregation and output functionality.
+Telegraf is an open-source data collection agent that is written in Go. It has no external dependencies and has minimal memory requirements. Telegraf includes dozens of built-in plugins that the user can activate as needed for their specific use case. These plugins provide a wide range of input, processing, aggregation, and output functionality.
 
-Telegraf has the ability to receive data in **line protocol** **format** making it compatible with k6, which is able to output data in the same format through a built-in plugin. Telegraf’s BasicStats and Quantile plugins calculate the mean, min, max, count, and sum, as well as percentile values, of all the incoming data. These metrics are important for accurately representing the test results as a whole.
+Telegraf can receive data in **line protocol** **format** making it compatible with k6, which can output data in the same format through a built-in plugin. Telegraf’s BasicStats and Quantile plugins calculate the mean, min, max, count, and sum, as well as percentile values, of all the incoming data. These metrics are important for accurately representing the test results as a whole.
 
-Telegraf was chosen since it permitted Artemis to stream the data from every single container running a k6 load test to a central location. The Telegraf container was configured to aggregate the incoming data every ten seconds, and then insert it into a database for long-term storage. A ten second window was determined to substantially reduce the amount of raw data that needed to be stored while retaining meaningful insights in the test results.
+Telegraf was chosen since it permitted Artemis to stream the data from every single container running a k6 load test to a central location. The Telegraf container was configured to aggregate the incoming data every ten seconds, and then insert it into a database for long-term storage. A ten-second window was determined to substantially reduce the amount of raw data that needed to be stored while retaining meaningful insights into the test results.
 
 #### 6.3.3 Challenge: Container communication
 
 Having determined that Telegraf was Artemis’ best option for addressing the problem of data aggregation, the next problem to tackle was how to make the Telegraf container reachable by the numerous test containers executing `artemis.js` and running the user’s tests with k6.
 
-While all of Artemis’ containers run on a single VPC, the serverless nature of the implementation means that container instances get spun up and torn down on demand and the private and public IP addresses of the Telegraf container change whenever a new instance of Telegraf is created. A straightforward way for the current instance of the Telegraf container to be reachable by all of the test containers was needed.
+While all of Artemis’ containers run on a single VPC, the serverless nature of the implementation means that container instances get spun up and torn down on demand, and the private and public IP addresses of the Telegraf container change whenever a new instance of Telegraf is created. A straightforward way for the current instance of the Telegraf container to be reachable by all of the test containers was needed.
 
 {{< figure src="../assets/44_route53.png" caption="Figure 6.11 Setting and receiving an IP address from Route 53. " >}}
 
@@ -443,33 +443,33 @@ The next problem to consider was how to best store data long-term for historical
 
 Cloud-based SaaS load testing solutions typically offer one to six months of data retention. Early on, it was decided that Artemis would not impose any data retention restrictions to allow for better historical data analysis.
 
-Storing data long-term allows the user to answer several important questions when an anomaly arises: has this issue happened before? And if it has, when did it first start and why? Being able to search over months or years of historical data can be a huge advantage and may allow the user to more easily answer these questions. Additionally, the knowledge gained from historical data can provide the user with greater confidence in their system.
+Storing data long-term allows the user to answer several important questions when an anomaly arises: Has this issue happened before? And if it has, when did it first start and why? Being able to search over months or years of historical data can be a huge advantage and may allow the user to more easily answer these questions. Additionally, the knowledge gained from historical data can provide the user with greater confidence in their system.
 
 #### 6.4.2 Time-series databases
 
 k6, the load testing tool at the center of Artemis, outputs test results as time-series data. **Time-series data** is a sequence of data points collected over time intervals, giving the user the ability to track changes over time. Time-series data can track changes over milliseconds, days, or even years. This type of data accumulates very quickly and normal databases are not designed to handle the large amounts of necessary writes.
 
-k6 also recognizes how large amounts of data introduce an additional challenge: "...a large load test will likely produce a massive amount of data points. On the storage side, the database will likely become another bottleneck…In this case, [a] team must choose a high-performing database, optimizing for this use case, and typically aggregating the data before storing it." [cite 2]
+k6 also recognizes how large amounts of data introduce an additional challenge: "...a large load test will likely produce a massive amount of data points. On the storage side, the database will likely become another bottleneck…In this case, [a] team must choose a high-performing database, optimizing for this use case, and typically aggregating the data before storing it."³
 
-The two main benefits that time-series databases provide over traditional databases are usability and scale. Usability refers to any features, like continuous queries, that enable the user to more easily perform data analysis. Time-series databases are able to offer greater scalability since they treat time as a first-class citizen. Treating time as a first-class citizen introduces efficiencies such as higher data ingest rates and faster queries at scale.
+The two main benefits that time-series databases provide over traditional databases are usability and scale. Usability refers to any features, like continuous queries, that enable the user to more easily perform data analysis. Time-series databases can offer greater scalability since they treat time as a first-class citizen. Treating time as a first-class citizen introduces efficiencies such as higher data ingest rates and faster queries at scale.
 
 #### 6.4.3 Prometheus as a data storage solution
 
-First, Prometheus was considered as a potential data storage solution. Prometheus is an open source, metrics-based monitoring system and time-series database. The user is able to query data from Prometheus using its own custom, independent query language, PromQL. PromQL has no overlap with other query languages used in time-series databases, hence the user would need to learn a new SQL-like syntax to utilize this solution.
+First, Prometheus was considered as a potential data storage solution. Prometheus is an open-source, metrics-based monitoring system and time-series database. The user can query data from Prometheus using its custom, independent query language, PromQL. PromQL has no overlap with other query languages used in time-series databases, hence the user would need to learn a new SQL-like syntax to utilize this solution.
 
-k6 supports sending test result metrics to a Prometheus remote write endpoint through the use of an extension. To maintain Artemis’ serverless nature, the AWS Managed Prometheus service (AMP) would need to be used. AMP is a serverless solution where cost is based on the metrics ingested, stored or queried. Otherwise, using Prometheus on AWS would require the user to manage an EC2 instance and thus not qualify as serverless.
+k6 supports sending test result metrics to a Prometheus remote write endpoint through the use of an extension. To maintain Artemis’ serverless nature, the AWS Managed Prometheus service (AMP) would need to be used. AMP is a serverless solution where cost is based on the metrics ingested, stored, or queried. Otherwise, using Prometheus on AWS would require the user to manage an EC2 instance and thus not qualify as serverless.
 
 The envisioned infrastructure would have a load testing container, running k6, streaming the test result data directly to the AMP remote write endpoint. Data aggregation was not considered at this point. This remote write endpoint would be provided by AMP immediately after creating a Prometheus instance. An issue with this approach is that AMP, as well as other AWS services, requires requests sent over HTTP to provide AWS authentication information through the SigV4, or Signature Version 4, signing process. Since k6 lacks the ability to do this, ways in which requests could be signed before they were sent to AMP were evaluated.
 
-A potential solution involved running a sidecar container which would run AWS SigV4 Proxy. AWS SigV4 Proxy is an open source project that looks for AWS SDK credentials in three different areas: environment variables, shared credentials file, or the IAM role for the ECS task role. Requests would be routed from k6 to the proxy, the proxy would sign these requests using the credentials found, and then the requests would be forwarded to AWS AMP. While this solution would allow AMP to accept the test results produced by k6, it would effectively double the amount of containers deployed per test. Doubling the containers would duplicate the cost per test as well as introduce more points of failure.
+A potential solution involved running a sidecar container that would run AWS SigV4 Proxy. AWS SigV4 Proxy is an open-source project that looks for AWS SDK credentials in three different areas: environment variables, shared credentials file, or the IAM role for the ECS task role. Requests would be routed from k6 to the proxy, the proxy would sign these requests using the credentials found, and then the requests would be forwarded to AWS AMP. While this solution would allow AMP to accept the test results produced by k6, it would effectively double the number of containers deployed per test. Doubling the containers would duplicate the cost per test as well as introduce more points of failure.
 
 #### 6.4.4 Timestream
 
 The next data storage solution that was examined was AWS Timestream. **AWS Timestream** is a scalable, serverless time-series database. Like AWS Managed Prometheus, Timestream's pricing is based on writes, queries, and storage. For Artemis’ use case, there were two qualities of Timestream that made it a better solution as the data storage component when compared to Prometheus: the query language used and the way data is stored.
 
-Timestream uses SQL as its query language. Given the overall goal of making Artemis easy to use, enabling the user to query data in a widely used language like SQL was determined to be a better option than using a PromQL-based solution. Timestream stores data in both memory and magnetic stores. The in-memory store is used for recent data while the magnetic store is used for historical data. Timestream has the ability to automatically move data from the memory store to the magnetic store as it reaches a certain age. The magnetic store is a more cost-effective way of storing data; this is ideal for Artemis’ users since they might choose to retain their load test results over long periods of time.
+Timestream uses SQL as its query language. Given the overall goal of making Artemis easy to use, enabling the user to query data in a widely used language like SQL was determined to be a better option than using a PromQL-based solution. Timestream stores data in both memory and magnetic stores. The in-memory store is used for recent data while the magnetic store is used for historical data. Timestream can automatically move data from the memory store to the magnetic store as it reaches a certain age. The magnetic store is a more cost-effective way of storing data; this is ideal for Artemis users since they might choose to retain their load test results over long periods.
 
-This, combined with the fact that it integrates well with k6, Telegraf and Artemis’ overall architecture implementation, made Timestream the right choice for Artemis’ data storage component.
+This, combined with the fact that it integrates well with k6, Telegraf, and Artemis’ overall architecture implementation, made Timestream the right choice for Artemis’ data storage component.
 
 {{< figure src="../assets/44_telegraf_timestream.gif" caption="Figure 6.13 Aggregated time-series data is inserted to Timestream database" >}}
 
@@ -481,7 +481,7 @@ Artemis needed to provide the user with a means to make sense of the stored data
 
 #### 6.5.1 Grafana dashboard
 
-**Grafana** provides an open source solution for visualizing data over time via a customizable dashboard. It connects to several databases such as PostgreSQL, InfluxDB, MySQL, and AWS Timestream and allows the user to decide on what information to display by associating a data source and one or more database queries with a panel. A dashboard can be composed of several user-customized panels. At any point during the creation process, a dashboard’s configuration can be preserved as a JSON file and re-used as a template for other dashboards.
+**Grafana** provides an open-source solution for visualizing data over time via a customizable dashboard. It connects to several databases such as PostgreSQL, InfluxDB, MySQL, and AWS Timestream and allows the user to decide on what information to display by associating a data source and one or more database queries with a panel. A dashboard can be composed of several user-customized panels. At any point during the creation process, a dashboard’s configuration can be preserved as a JSON file and re-used as a template for other dashboards.
 
 {{< figure src="../assets/image30.png" caption="Figure 6.15 A panel (top) and the associated data source and database query (bottom) that informs the graph displayed by the panel." >}}
 
@@ -493,11 +493,11 @@ The Artemis Grafana dashboard includes custom database queries to display the fo
 
 The four summary panels shown at the top of the dashboard provide statistics to enable a user to see how their test is running at a glance.
 
-Total requests per second shows the number of requests made every second to all endpoints in the test script. On its own, this metric does not tell the user much about the performance of the API. But when request duration increases, or errors start to appear, it lets the user know at what point their system starts to break.
+Total requests per second show the number of requests made every second to all endpoints in the test script. On its own, this metric does not tell the user much about the performance of the API. But when request duration increases or errors start to appear, it lets the user know at what point their system starts to break.
 
 {{< figure src="../assets/grafana-top.png" caption="Figure 6.16 Top half of the Grafana dashboard showing the four summary panels and total requests per second." >}}
 
-Figure 6.16 is the associated query that obtains the data from Timestream to illustrate the total requests/second. It locates the rows that have a value of `value_sum` within the measure_name column of the `http_reqs` table. A single `measure_value` within a `value_sum` row indicates the sum of HTTP requests made across all containers over the Telegraf aggregation period. On line 1, the sum of the number of HTTP requests is divided by the 10 second period to determine an approximate number of requests per second.
+Figure 6.16 is the associated query that obtains the data from Timestream to illustrate the total requests/second. It locates the rows that have a value of `value_sum` within the measure_name column of the `http_reqs` table. A single `measure_value` within a `value_sum` row indicates the sum of HTTP requests made across all containers over the Telegraf aggregation period. On line 1, the sum of the number of HTTP requests is divided by the 10-second period to determine an approximate number of requests per second.
 
 {{< figure src="../assets/image18.png" caption="Figure 6.17 Timestream query for total requests/second panel." >}}
 
@@ -505,25 +505,52 @@ HTTP Request Duration displays how long it takes to perform the entire request-r
 
 {{< figure src="../assets/red_dots.png" caption="Figure 6.18 Bottom half of the Grafana dashboard showing three panels: HTTP Request Duration, HTTP Failures, and Virtual Users" >}}
 
-The HTTP Failures panel on the bottom left of Figure 6.18 displays dots that represent any response that returned with a status code in the 400 or 500 range. This allows the user to quickly determine how many errors occurred within a certain time period.
+The HTTP Failures panel on the bottom left of Figure 6.18 displays dots that represent any response that returned with a status code in the 400 or 500 range. This allows the user to quickly determine how many errors occurred within a certain period.
 
 The bottom right panel, Virtual Users, displays the total number of users simulated across all containers.
 
 ## 7. Conclusion & Future Work {#future_work}
 
-In summary, Artemis addresses many of the inherent limitations of existing load testing solutions. Artemis deploys a flexible, scalable load testing infrastructure that enables users to visualize and store near real-time results. This infrastructure is accessible by either Artemis’ CLI or graphical user interface.
+In summary, Artemis addresses many of the inherent limitations of existing load testing solutions. Artemis deploys a flexible, scalable load testing infrastructure that enables users to visualize and store near-real-time results. This infrastructure is accessible by either Artemis’ CLI or graphical user interface.
 
-Artemis is not feature-complete; there are some additional capabilities that could be incorporated in future versions:
+Artemis is not feature-complete; some additional capabilities that could be incorporated in future versions:
 
 - Artemis’ current infrastructure allows for testing up to 20,000 VUs. This limitation is a function of Artemis’ aggregation implementation. A way to scale this aggregation step to accommodate an even greater number of VUs should be explored.
 - The implementation of an automatically generated “executive summary” of the results of each test that could be easily shared across the user’s team or organization would be a valuable addition.
-- Currently, tests can be started on demand only. Functionality that allows users to schedule tests should be incorporated.
+- Currently, tests can be started on-demand only. Functionality that allows users to schedule tests should be incorporated.
 
 ## 8. References {#references}
 
-[1] [https://k6.io/blog/comparing-best-open-source-load-testing-tools/](https://k6.io/blog/comparing-best-open-source-load-testing-tools/)
+_Citations_
 
-[2] [https://k6.io/what-to-consider-when-building-or-buying-a-load-testing-solution/](https://k6.io/what-to-consider-when-building-or-buying-a-load-testing-solution/)
+- ¹[Landscape of API Traffic - Cloudflare Blog](https://blog.cloudflare.com/landscape-of-api-traffic/)
+- ²[Open-source load testing tool review 2020](https://k6.io/blog/comparing-best-open-source-load-testing-tools/)
+- ³[What to Consider When Building or Buying a Load Testing Solution](https://k6.io/what-to-consider-when-building-or-buying-a-load-testing-solution/)
+
+_Books_
+
+- [Designing Data-Intensive Applications by Martin Kleppmann](https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/)
+- [The Hitchhiking Guide To Load Testing Projects: A Fun, Step-by-Step Walk-Through Guide by Leandro Melendez](https://www.amazon.com/Hitchhiking-Guide-Testing-Projects-Step/dp/0988540207)
+
+_Articles_
+
+- [What is API Load Testing? - LoadNinja Blog](https://loadninja.com/articles/what-is-api-load-testing/)
+- [Modern Load Testing for Engineering Teams](https://k6.io/modern-load-testing-for-engineering-teams/)
+- [What the heck is time-series data (and why do I need a time-series database)?](https://www.timescale.com/blog/what-the-heck-is-time-series-data-and-why-do-i-need-a-time-series-database-dcf3b1b18563/)
+- [The Importance of Historical Log Data](https://www.graylog.org/post/the-importance-of-historical-log-data)
+- [Browser-based load testing in 2020](https://www.flood.io/blog/browser-based-load-testing-in-2020)
+- [The Practical Test Pyramid](https://martinfowler.com/articles/practical-test-pyramid.html#RestApiEnd-to-endTest)
+- [k6 Cloud Pricing](https://k6.io/pricing/)
+- [k6 Load Testing Results in Grafana](https://grafana.com/grafana/dashboards/2587)
+- [Distributed Load Testing on AWS](https://docs.aws.amazon.com/solutions/latest/distributed-load-testing-on-aws/test-workflow.html)
+- [What is API Load Testing? - Flood Blog](https://www.flood.io/blog/what-is-api-load-testing)
+
+_Documentation_
+
+- [Telegraf documentation](https://docs.influxdata.com/telegraf/v1.22/)
+- [Grafana documentation](https://grafana.com/docs/grafana/latest/)
+- [k6 documentation](https://k6.io/docs/)
+- [AWS CDK Developer Guide](https://docs.aws.amazon.com/cdk/v2/guide/home.html)
 
 ---
 
